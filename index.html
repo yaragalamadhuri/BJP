@@ -182,14 +182,20 @@
   let email = document.getElementById("email").value.trim();
   let pass = document.getElementById("password").value.trim();
 
-  // 👉 Change these values to your real email + password
-  let validEmail = "yourmail@gmail.com";
-  let validPass = "12345";
+  // Array of valid emails and passwords
+  const validCredentials = [
+    { email: "yaragalamadhuri@gmail.com", password: "12345" },
+    { email: "user2@example.com", password: "password2" },
+    { email: "user3@example.com", password: "password3" }
+  ];
 
-  if(email === validEmail && pass === validPass) {
-    showPage('register');
+  // Check if entered email and password match any of the valid pairs
+  const validUser = validCredentials.find(user => user.email === email && user.password === pass);
+
+  if(validUser) {
+    showPage('register');  // Navigate to the registration page
   } else {
-    alert("తప్పు ఇమెయిల్ లేదా పాస్వర్డ్");
+    alert("Wrong email or password");  // Show error if credentials don't match
   }
 }
 
@@ -212,6 +218,7 @@
 
 </body>
 </html>
+
 
 
 
