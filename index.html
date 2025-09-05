@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>బీజేపీ కాకినాడ</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      background: url("images/logo.jpg") no-repeat center center fixed;
+      background-size: cover;
+    }
+    header {
+      background: rgba(255, 165, 0, 0.9);
+      color: white;
+      padding: 20px;
+    }
+    header img {
+      height: 60px;
+      vertical-align: middle;
+    }
+    h1 {
+      margin: 10px 0 0;
+      font-size: 28px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 30px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .form-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      text-align: left;
+    }
+    .form-container h2 {
+      text-align: center;
+      color: #ff6600;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      background: orange;
+      color: white;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #e65c00;
+    }
+    footer {
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Welcome Section -->
+  <header>
+    <img src="images/logo.jpg" alt="BJP Logo"> 
+    <h1>భారతీయ జనతా పార్టీ (బీజేపీ) - కాకినాడ</h1>
+    <p>అధికారిక పేజీకి స్వాగతం</p>
+  </header>
+
+  <section class="gallery">
+    <div class="card"><img src="images/leader1.jpg" alt="నేత 1"></div>
+    <div class="card"><img src="images/leader2.jpg" alt="నేత 2"></div>
+    <div class="card"><img src="images/leader3.jpg" alt="నేత 3"></div>
+    <div class="card"><img src="images/Media.jpeg" alt="మీడియా"></div>
+  </section>
+
+  <!-- Registration Form Section -->
+  <div class="form-container">
+    <h2>బీజేపీ సభ్యత్వ నమోదు ఫారం</h2>
+    <form>
+      <label for="name">పేరు :</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="fname">తండ్రి పేరు :</label>
+      <input type="text" id="fname" name="fname" required>
+
+      <label for="age">వయస్సు :</label>
+      <input type="number" id="age" name="age" required>
+
+      <label for="gender">లింగం :</label>
+      <select id="gender" name="gender" required>
+        <option value="">ఎంచుకోండి</option>
+        <option value="male">పురుషుడు</option>
+        <option value="female">స్త్రీ</option>
+        <option value="other">ఇతరులు</option>
+      </select>
+
+      <label for="village">గ్రామం :</label>
+      <input type="text" id="village" name="village" required>
+
+      <label for="mandal">మండలం :</label>
+      <input type="text" id="mandal" name="mandal" required>
+
+      <label for="district">జిల్లా :</label>
+      <input type="text" id="district" name="district" required>
+
+      <label for="state">రాష్ట్రం :</label>
+      <input type="text" id="state" name="state" required>
+
+      <label for="profession">వృత్తి :</label>
+      <input type="text" id="profession" name="profession" required>
+
+      <label for="phone">ఫోన్ నంబర్ :</label>
+      <input type="tel" id="phone" name="phone" required>
+
+      <label for="blood">రక్త గ్రూప్ :</label>
+      <input type="text" id="blood" name="blood" required>
+
+      <button type="submit">సమర్పించు</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>© 2025 బీజేపీ కాకినాడ. అన్ని హక్కులు రిజర్వ్ చేయబడ్డాయి.</p>
+  </footer>
+
+</body>
+</html>
