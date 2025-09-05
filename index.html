@@ -1,161 +1,250 @@
 <!DOCTYPE html>
 <html lang="te">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>బీజేపీ కాకినాడ</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      background: url("logo.jpg") no-repeat center center fixed;
-      background-size: cover;
+    :root{
+      --orange:#ff8a00;
+      --dark:rgba(0,0,0,.75);
+      --card:white;
     }
-    header {
-      background: rgba(255, 165, 0, 0.9);
-      color: white;
-      padding: 20px;
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:Arial,Helvetica,sans-serif; color:#111; text-align:center;
+      background:url("logo.jpg") no-repeat center center fixed; background-size:cover;
     }
-    header img {
-      height: 60px;
-      vertical-align: middle;
+    header{
+      background:rgba(255,138,0,.92); color:#fff; padding:18px 12px;
+      position:sticky; top:0; z-index:10;
     }
-    h1 {
-      margin: 10px 0 0;
-      font-size: 28px;
+    header img{height:54px; vertical-align:middle}
+    h1{margin:6px 0 0}
+    .wrap{max-width:1100px; margin:22px auto; padding:0 14px}
+    .section{display:none; animation:fade .35s ease}
+    .section.active{display:block}
+    @keyframes fade{from{opacity:.2; transform:translateY(6px)} to{opacity:1; transform:none}}
+
+    /* stepper */
+    .steps{display:flex; gap:8px; justify-content:center; margin:14px 0 6px}
+    .step{height:8px; width:38px; border-radius:999px; background:rgba(0,0,0,.15)}
+    .step.on{background:var(--orange)}
+
+    /* gallery */
+    .gallery{
+      display:grid; gap:18px; padding:18px;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 30px;
+    .card{
+      background:rgba(255,255,255,.94); border-radius:14px; padding:14px;
+      box-shadow:0 6px 14px rgba(0,0,0,.18);
     }
-    .card {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 12px;
-      padding: 15px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    .card img{width:100%; border-radius:10px; display:block}
+
+    /* forms */
+    .form-card{
+      max-width:640px; margin:18px auto; text-align:left;
+      background:rgba(255,255,255,.96); border-radius:14px; padding:18px 16px;
+      box-shadow:0 6px 14px rgba(0,0,0,.2);
     }
-    .card img {
-      width: 100%;
-      border-radius: 10px;
+    .form-card h2{margin:6px 0 14px; color:var(--orange); text-align:center}
+    label{display:block; margin:10px 0 6px; font-weight:700}
+    input,select{
+      width:100%; padding:11px 12px; border:1px solid #d6d6d6; border-radius:10px; font-size:16px;
+      background:#fff;
     }
-    .form-container {
-      max-width: 600px;
-      margin: 40px auto;
-      background: rgba(255, 255, 255, 0.95);
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      text-align: left;
+    .row{display:grid; gap:12px; grid-template-columns:1fr 1fr}
+    .btns{display:flex; gap:10px; margin-top:14px}
+    button{
+      cursor:pointer; border:0; border-radius:10px; padding:12px 16px; font-size:16px; font-weight:700;
+      background:var(--orange); color:#fff; flex:1;
     }
-    .form-container h2 {
-      text-align: center;
-      color: #ff6600;
-    }
-    label {
-      display: block;
-      margin: 10px 0 5px;
-      font-weight: bold;
-    }
-    input, select {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
-    button {
-      background: orange;
-      color: white;
-      padding: 12px;
-      width: 100%;
-      border: none;
-      border-radius: 8px;
-      font-size: 18px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #e65c00;
-    }
-    footer {
-      background: rgba(0, 0, 0, 0.8);
-      color: white;
-      padding: 10px;
-      margin-top: 20px;
+    button.sec{background:#444}
+    button:disabled{opacity:.6; cursor:not-allowed}
+    .note{font-size:14px; color:#333; text-align:center}
+
+    footer{background:var(--dark); color:#fff; padding:14px; margin-top:28px}
+
+    @media (max-width:640px){
+      .row{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
 
-  <!-- Welcome Section -->
   <header>
-    <img src="logo.jpg" alt="BJP Logo"> 
-    <h1>భారతీయ జనతా పార్టీ (బీజేపీ) - కాకినాడ</h1>
-    <p>అధికారిక పేజీకి స్వాగతం</p>
+    <img src="logo.jpg" alt="బీజేపీ లోగో">
+    <h1>భారతీయ జనతా పార్టీ (బీజేపీ) – కాకినాడ</h1>
+    <div class="steps">
+      <div class="step on" id="s1"></div>
+      <div class="step" id="s2"></div>
+      <div class="step" id="s3"></div>
+    </div>
   </header>
 
-  <section class="gallery">
-    <div class="card"><img src="leader1.jpg" alt="నేత 1"></div>
-    <div class="card"><img src="leader2.jpg" alt="నేత 2"></div>
-    <div class="card"><img src="leader3.jpg" alt="నేత 3"></div>
-    <div class="card"><img src="Media.jpeg" alt="మీడియా"></div>
-  </section>
+  <main class="wrap">
 
-  <!-- Registration Form Section -->
-  <div class="form-container">
-    <h2>బీజేపీ సభ్యత్వ నమోదు ఫారం</h2>
-    <form>
-      <label for="name">పేరు :</label>
-      <input type="text" id="name" name="name" required>
+    <!-- SECTION 1: WELCOME -->
+    <section class="section active" id="welcome">
+      <div class="card">
+        <h2 style="margin:6px 0 2px;">స్వాగతం</h2>
+        <p class="note">బీజేపీ కాకినాడ అధికారిక పేజీకి స్వాగతం. క్రింద నాయకుల చిత్రాలు చూడండి.</p>
+      </div>
+      <div class="gallery">
+        <div class="card"><img src="leader1.jpg" alt="నేత 1"></div>
+        <div class="card"><img src="leader2.jpg" alt="నేత 2"></div>
+        <div class="card"><img src="leader3.jpg" alt="నేత 3"></div>
+        <div class="card"><img src="Media.jpeg" alt="మీడియా"></div>
+      </div>
+      <div class="form-card" style="text-align:center">
+        <p class="note">తదుపరి దశకు వెళ్లడానికి “లాగిన్” బటన్ పై నొక్కండి.</p>
+        <div class="btns" style="justify-content:center">
+          <button onclick="go(2)">లాగిన్</button>
+        </div>
+      </div>
+    </section>
 
-      <label for="fname">తండ్రి పేరు :</label>
-      <input type="text" id="fname" name="fname" required>
+    <!-- SECTION 2: LOGIN -->
+    <section class="section" id="login">
+      <form class="form-card" onsubmit="return doLogin(event)">
+        <h2>లాగిన్ వివరాలు</h2>
+        <label for="user">వినియోగదారు పేరు</label>
+        <input id="user" name="user" type="text" placeholder="మీ పేరు" required>
 
-      <label for="age">వయస్సు :</label>
-      <input type="number" id="age" name="age" required>
+        <label for="pass">పాస్‌వర్డ్</label>
+        <input id="pass" name="pass" type="password" placeholder="పాస్‌వర్డ్ నమోదు చేయండి" required>
 
-      <label for="gender">లింగం :</label>
-      <select id="gender" name="gender" required>
-        <option value="">ఎంచుకోండి</option>
-        <option value="male">పురుషుడు</option>
-        <option value="female">స్త్రీ</option>
-        <option value="other">ఇతరులు</option>
-      </select>
+        <div class="btns">
+          <button type="button" class="sec" onclick="go(1)">వెనక్కి</button>
+          <button type="submit">లాగిన్ చేసి కొనసాగు</button>
+        </div>
+        <p class="note">డెమో కోసం ఏదైనా పేరు & పాస్‌వర్డ్ ఇవ్వండి.</p>
+      </form>
+    </section>
 
-      <label for="village">గ్రామం :</label>
-      <input type="text" id="village" name="village" required>
+    <!-- SECTION 3: REGISTRATION FORM -->
+    <section class="section" id="reg">
+      <form class="form-card" onsubmit="return submitForm(event)">
+        <h2>బీజేపీ సభ్యత్వ నమోదు ఫారం</h2>
 
-      <label for="mandal">మండలం :</label>
-      <input type="text" id="mandal" name="mandal" required>
+        <label for="name">పేరు</label>
+        <input type="text" id="name" name="name" required>
 
-      <label for="district">జిల్లా :</label>
-      <input type="text" id="district" name="district" required>
+        <label for="fname">తండ్రి పేరు</label>
+        <input type="text" id="fname" name="fname" required>
 
-      <label for="state">రాష్ట్రం :</label>
-      <input type="text" id="state" name="state" required>
+        <div class="row">
+          <div>
+            <label for="age">వయస్సు</label>
+            <input type="number" id="age" name="age" min="18" placeholder="18+" required>
+          </div>
+          <div>
+            <label for="gender">లింగం</label>
+            <select id="gender" name="gender" required>
+              <option value="">ఎంచుకోండి</option>
+              <option value="male">పురుషుడు</option>
+              <option value="female">స్త్రీ</option>
+              <option value="other">ఇతరులు</option>
+            </select>
+          </div>
+        </div>
 
-      <label for="profession">వృత్తి :</label>
-      <input type="text" id="profession" name="profession" required>
+        <div class="row">
+          <div>
+            <label for="village">గ్రామం</label>
+            <input type="text" id="village" name="village" required>
+          </div>
+          <div>
+            <label for="mandal">మండలం</label>
+            <input type="text" id="mandal" name="mandal" required>
+          </div>
+        </div>
 
-      <label for="phone">ఫోన్ నంబర్ :</label>
-      <input type="tel" id="phone" name="phone" required>
+        <div class="row">
+          <div>
+            <label for="district">జిల్లా</label>
+            <input type="text" id="district" name="district" required>
+          </div>
+          <div>
+            <label for="state">రాష్ట్రం</label>
+            <input type="text" id="state" name="state" required>
+          </div>
+        </div>
 
-      <label for="blood">రక్త గ్రూప్ :</label>
-      <input type="text" id="blood" name="blood" required>
+        <label for="profession">వృత్తి</label>
+        <input type="text" id="profession" name="profession" required>
 
-      <button type="submit">సమర్పించు</button>
-    </form>
-  </div>
+        <div class="row">
+          <div>
+            <label for="phone">ఫోన్ నంబర్</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="10 అంకెల నంబర్" required>
+          </div>
+          <div>
+            <label for="blood">రక్త గ్రూప్</label>
+            <input type="text" id="blood" name="blood" placeholder="ఉదా: O+, B-" required>
+          </div>
+        </div>
+
+        <div class="btns">
+          <button type="button" class="sec" onclick="go(2)">వెనక్కి</button>
+          <button type="submit">సమర్పించు</button>
+        </div>
+        <p class="note">ఈ డెమోలో సమాచారాన్ని ఎక్కడా సేవ్ చేయము — సమర్పించిన తర్వాత ధన్యవాద సందేశం మాత్రమే చూపిస్తాము.</p>
+      </form>
+    </section>
+
+    <!-- THANK YOU SECTION (hidden initially) -->
+    <section class="section" id="thanks">
+      <div class="form-card" style="text-align:center">
+        <h2>ధన్యవాదాలు!</h2>
+        <p class="note">మీ నమోదు విజయవంతంగా స్వీకరించబడింది.</p>
+        <div class="btns" style="justify-content:center">
+          <button onclick="go(1)" class="sec">మళ్లీ హోమ్</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
 
   <footer>
-    <p>© 2025 బీజేపీ కాకినాడ. అన్ని హక్కులు రిజర్వ్ చేయబడ్డాయి.</p>
+    © 2025 బీజేపీ కాకినాడ — అన్ని హక్కులుสง్రమించబడ్డాయి.
   </footer>
 
+  <script>
+    // Section navigation
+    function go(step){
+      // step: 1=welcome, 2=login, 3=registration, 4=thanks
+      const ids = ["welcome","login","reg","thanks"];
+      ids.forEach((id,i)=>{
+        document.getElementById(id).classList.toggle('active', (i===step-1));
+      });
+      // stepper UI
+      document.getElementById('s1').classList.toggle('on', step>=1 && step<=3 ? step===1 : false);
+      document.getElementById('s2').classList.toggle('on', step===2);
+      document.getElementById('s3').classList.toggle('on', step===3 || step===4);
+    }
+
+    function doLogin(e){
+      e.preventDefault();
+      // Simple demo check (no real auth)
+      const u = document.getElementById('user').value.trim();
+      const p = document.getElementById('pass').value.trim();
+      if(u && p){
+        go(3);
+      }else{
+        alert("దయచేసి సరైన లాగిన్ వివరాలు నమోదు చేయండి.");
+      }
+      return false;
+    }
+
+    function submitForm(e){
+      e.preventDefault();
+      // Simple front-end validation already handled by required/pattern/min
+      go(4); // show thank-you
+      return false;
+    }
+  </script>
 </body>
 </html>
-
 
