@@ -107,16 +107,16 @@
   </section>
 
   <!-- Login Page -->
-  <section id="login">
-    <div class="card" style="max-width:400px; margin:auto;">
-      <h2>లాగిన్</h2>
-      <label>వాడుకరిపేరు</label>
-      <input type="text" id="username" placeholder="వాడుకరిపేరు ఇవ్వండి">
-      <label>పాస్వర్డ్</label>
-      <input type="password" id="password" placeholder="పాస్వర్డ్ ఇవ్వండి">
-      <button onclick="login()">లాగిన్</button>
-    </div>
-  </section>
+<section id="login">
+  <div class="card" style="max-width:400px; margin:auto;">
+    <h2>లాగిన్</h2>
+    <label>ఇమెయిల్</label>
+    <input type="email" id="email" placeholder="మీ ఇమెయిల్ ఇవ్వండి">
+    <label>పాస్వర్డ్</label>
+    <input type="password" id="password" placeholder="పాస్వర్డ్ ఇవ్వండి">
+    <button onclick="login()">లాగిన్</button>
+  </div>
+</section>
 
   <!-- Registration Form -->
   <section id="register">
@@ -179,14 +179,20 @@
 
     // Simple login
     function login() {
-      let user = document.getElementById("username").value;
-      let pass = document.getElementById("password").value;
-      if(user === "admin" && pass === "1234") {
-        showPage('register');
-      } else {
-        alert("తప్పు వాడుకరిపేరు లేదా పాస్వర్డ్");
-      }
-    }
+  let email = document.getElementById("email").value.trim();
+  let pass = document.getElementById("password").value.trim();
+
+  // 👉 Change these values to your real email + password
+  let validEmail = "yourmail@gmail.com";
+  let validPass = "12345";
+
+  if(email === validEmail && pass === validPass) {
+    showPage('register');
+  } else {
+    alert("తప్పు ఇమెయిల్ లేదా పాస్వర్డ్");
+  }
+}
+
 
     // Submit to Google Sheets
     const scriptURL = "https://script.google.com/macros/s/AKfycbwMgHhbd46C6yNetmy0K4E_pEqyeSBscVjKY4wk59bNrzckWEJMNXD0_Iz9ka2jl208/exec"; 
@@ -206,6 +212,7 @@
 
 </body>
 </html>
+
 
 
 
