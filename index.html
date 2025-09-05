@@ -110,13 +110,14 @@
 <section id="login">
   <div class="card" style="max-width:400px; margin:auto;">
     <h2>లాగిన్</h2>
-    <label>ఇమెయిల్</label>
-    <input type="email" id="email" placeholder="మీ ఇమెయిల్ ఇవ్వండి">
+    <label>వాడుకరిపేరు</label>
+    <input type="text" id="username" placeholder="వాడుకరిపేరు ఇవ్వండి">
     <label>పాస్వర్డ్</label>
     <input type="password" id="password" placeholder="పాస్వర్డ్ ఇవ్వండి">
     <button onclick="login()">లాగిన్</button>
   </div>
 </section>
+
 
   <!-- Registration Form -->
   <section id="register">
@@ -179,26 +180,14 @@
 
     // Simple login
     function login() {
-  let email = document.getElementById("email").value.trim();
-  let pass = document.getElementById("password").value.trim();
-
-  // Array of valid emails and passwords
-  const validCredentials = [
-    { email: "yaragalamadhuri@gmail.com", password: "12345" },
-    { email: "user2@example.com", password: "password2" },
-    { email: "user3@example.com", password: "password3" }
-  ];
-
-  // Check if entered email and password match any of the valid pairs
-  const validUser = validCredentials.find(user => user.email === email && user.password === pass);
-
-  if(validUser) {
-    showPage('register');  // Navigate to the registration page
+  let user = document.getElementById("username").value;
+  let pass = document.getElementById("password").value;
+  if(user === "admin" && pass === "1234") {
+    showPage('register');
   } else {
-    alert("Wrong email or password");  // Show error if credentials don't match
+    alert("తప్పు వాడుకరిపేరు లేదా పాస్వర్డ్");
   }
 }
-
 
     // Submit to Google Sheets
     const scriptURL = "https://script.google.com/macros/s/AKfycbwMgHhbd46C6yNetmy0K4E_pEqyeSBscVjKY4wk59bNrzckWEJMNXD0_Iz9ka2jl208/exec"; 
