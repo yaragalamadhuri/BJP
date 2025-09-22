@@ -283,10 +283,40 @@
     }
     function submitForm(e){
       e.preventDefault();
-      go(4);
-      return false;
+      const data = {
+    user: document.getElementById('user')?.value || "",
+    pass: document.getElementById('pass')?.value || "",
+    faceData: document.getElementById('faceData').value,
+    name: document.getElementById('name').value,
+    father: document.getElementById('father').value,
+    age: document.getElementById('age').value,
+    gender: document.getElementById('gender').value,
+    village: document.getElementById('village').value,
+    mandal: document.getElementById('mandal').value,
+    district: document.getElementById('district').value,
+    state: document.getElementById('state').value,
+    profession: document.getElementById('profession').value,
+    phone: document.getElementById('phone').value,
+    blood: document.getElementById('blood').value
+  };
+
+  fetch("https://script.google.com/macros/s/AKfycbwMgHhbd46C6yNetmy0K4E_pEqyeSBscVjKY4wk59bNrzckWEJMNXD0_Iz9ka2jl208/exec", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "Content-Type": "application/json" }
+  })
+  .then(res => res.json())
+  .then(resp => {
+    console.log(resp);
+    go(4); // Go to Thank You page
+  })
+  .catch(err => alert("Error saving data: " + err));
+
+  return false;
+
     }
   </script>
 </body>
 </html>
+
 
