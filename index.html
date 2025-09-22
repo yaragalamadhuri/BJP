@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>బీజేపీ కాకినాడ</title>
 
-  <!-- ✅ Font Awesome Free CDN -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
@@ -30,64 +30,28 @@
     .section.active{display:block}
     @keyframes fade{from{opacity:.2; transform:translateY(6px)} to{opacity:1; transform:none}}
 
-    /* stepper */
     .steps{display:flex; gap:8px; justify-content:center; margin:14px 0 6px}
     .step{height:8px; width:38px; border-radius:999px; background:rgba(0,0,0,.15)}
     .step.on{background:var(--orange)}
 
-    /* gallery */
-    .gallery{
-      display:grid; gap:18px; padding:18px;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    }
-    .card{
-      background:rgba(255,255,255,.94); border-radius:14px; padding:14px;
-      box-shadow:0 6px 14px rgba(0,0,0,.18);
-    }
+    .gallery{display:grid; gap:18px; padding:18px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+    .card{background:rgba(255,255,255,.94); border-radius:14px; padding:14px; box-shadow:0 6px 14px rgba(0,0,0,.18);}
     .card img{width:100%; border-radius:10px; display:block}
 
-    /* forms */
-    .form-card{
-      max-width:640px; margin:18px auto; text-align:left;
-      background:rgba(255,255,255,.96); border-radius:14px; padding:18px 16px;
-      box-shadow:0 6px 14px rgba(0,0,0,.2);
-    }
+    .form-card{max-width:640px; margin:18px auto; text-align:left; background:rgba(255,255,255,.96); border-radius:14px; padding:18px 16px; box-shadow:0 6px 14px rgba(0,0,0,.2);}
     .form-card h2{margin:6px 0 14px; color:var(--orange); text-align:center}
     label{display:block; margin:10px 0 6px; font-weight:700}
-    input,select{
-      width:100%; padding:11px 12px; border:1px solid #d6d6d6; border-radius:10px; font-size:16px;
-      background:#fff;
-    }
+    input,select{width:100%; padding:11px 12px; border:1px solid #d6d6d6; border-radius:10px; font-size:16px; background:#fff;}
     .row{display:grid; gap:12px; grid-template-columns:1fr 1fr}
     .btns{display:flex; gap:10px; margin-top:14px}
-    button{
-      cursor:pointer; border:0; border-radius:10px; padding:12px 16px; font-size:16px; font-weight:700;
-      background:var(--orange); color:#fff; flex:1;
-    }
+    button{cursor:pointer; border:0; border-radius:10px; padding:12px 16px; font-size:16px; font-weight:700; background:var(--orange); color:#fff; flex:1;}
     button.sec{background:#444}
     button:disabled{opacity:.6; cursor:not-allowed}
     .note{font-size:14px; color:#333; text-align:center}
 
-    /* social icons */
-    .social{
-      margin-top:16px;
-      display:flex;
-      justify-content:center;
-      gap:20px;
-    }
-    .social a{
-      font-size:28px;
-      color:var(--orange);
-      text-decoration:none;
-      transition:0.3s;
-    }
-    .social a:hover{color:#111}
-
     footer{background:var(--dark); color:#fff; padding:14px; margin-top:28px}
 
-    @media (max-width:640px){
-      .row{grid-template-columns:1fr}
-    }
+    @media (max-width:640px){.row{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -145,7 +109,6 @@
         <label for="pass">పాస్‌వర్డ్</label>
         <input id="pass" name="pass" type="password" placeholder="పాస్‌వర్డ్ నమోదు చేయండి" required>
 
-        <!-- 🔹 Face Recognition -->
         <div style="text-align:center; margin:16px 0;">
           <video id="video" width="280" height="200" autoplay muted style="border:1px solid #ccc; border-radius:10px;"></video>
           <canvas id="canvas" width="280" height="200" style="display:none;"></canvas>
@@ -241,10 +204,12 @@
   </footer>
 
   <script>
-    // Section navigation
+    // Navigation
     function go(step){
       const ids = ["welcome","login","reg","thanks"];
-      ids.forEach((id,i)=>{document.getElementById(id).classList.toggle('active', (i===step-1));});
+      ids.forEach((id,i)=>{
+        document.getElementById(id).classList.toggle('active', (i===step-1));
+      });
       document.getElementById('s1').classList.toggle('on', step===1);
       document.getElementById('s2').classList.toggle('on', step===2);
       document.getElementById('s3').classList.toggle('on', step===3 || step===4);
@@ -271,44 +236,44 @@
       e.preventDefault();
       const u=document.getElementById('user').value.trim();
       const p=document.getElementById('pass').value.trim();
-      if(u && p){ go(3); }else{ alert("దయచేసి సరైన లాగిన్ వివరాలు నమోదు చేయండి."); }
+      if(u && p){ go(3); }
+      else{ alert("దయచేసి సరైన లాగిన్ వివరాలు నమోదు చేయండి."); }
       return false;
     }
 
+    // Google Sheets Integration
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzWvHzrjDLiaXHlM9t50eRoEI9xOukvq5pqjbJX991v46Erl1PTHcjU28xIUXQaha80/exec"; 
     function submitForm(e){
       e.preventDefault();
-
       const data = {
-        name: document.getElementById("name").value.trim(),
-        father: document.getElementById("father").value.trim(),
-        age: document.getElementById("age").value.trim(),
-        gender: document.getElementById("gender").value,
-        village: document.getElementById("village").value.trim(),
-        mandal: document.getElementById("mandal").value.trim(),
-        district: document.getElementById("district").value.trim(),
-        state: document.getElementById("state").value.trim(),
-        profession: document.getElementById("profession").value.trim(),
-        phone: document.getElementById("phone").value.trim(),
-        blood: document.getElementById("blood").value,
-        faceData: document.getElementById("faceData").value
+        name: document.getElementById('name').value,
+        father: document.getElementById('father').value,
+        age: document.getElementById('age').value,
+        gender: document.getElementById('gender').value,
+        village: document.getElementById('village').value,
+        mandal: document.getElementById('mandal').value,
+        district: document.getElementById('district').value,
+        state: document.getElementById('state').value,
+        profession: document.getElementById('profession').value,
+        phone: document.getElementById('phone').value,
+        blood: document.getElementById('blood').value,
+        faceData: document.getElementById('faceData').value
       };
-
-      fetch("https://script.google.com/macros/s/AKfycbyjhzcxAHY_Op7-N9ZYBLkOu0wjjIrXZAukmXfoZRcTHkvPghGcWVLeQlHFidJoiOMp/exec", {
-        method:"POST",
-        body: JSON.stringify(data),
-        headers: {"Content-Type":"application/json"}
+      fetch(scriptURL, {
+        method:'POST',
+        mode:'cors',
+        headers:{ 'Content-Type':'application/json' },
+        body:JSON.stringify(data)
       })
       .then(res => res.json())
-      .then(res => {
-        if(res.status==="success"){ go(4); }
-        else{ alert("Error saving data: " + (res.message || "Unknown error")); }
+      .then(result => {
+        if(result.status==="success"){ go(4); }
+        else{ alert("Data not saved: " + result.message); }
       })
-      .catch(err => alert("Error saving data: " + err));
-
+      .catch(err => { console.error("Error saving data:", err); alert("Error saving data. Check console."); });
       return false;
     }
   </script>
 </body>
 </html>
-
 
