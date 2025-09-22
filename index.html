@@ -94,7 +94,15 @@
 
   <header>
     <img src="logo.jpg" alt="బీజేపీ లోగో">
-    <h1>భారతీయ జనతా పార్టీ (బీజేపీ) – కాకినాడ</h1>
+    <h1 data-key="partyTitle">భారతీయ జనతా పార్టీ (బీజేపీ) – కాకినాడ</h1>
+    <div style="margin:16px 0;">
+      <label for="langSelect" style="font-weight:bold;" data-key="languageLabel">భాష / भाषा / Language:</label>
+      <select id="langSelect" onchange="translatePage(this.value)">
+        <option value="te">తెలుగు</option>
+        <option value="hi">हिंदी</option>
+        <option value="en">English</option>
+      </select>
+    </div>
     <div class="steps">
       <div class="step on" id="s1"></div>
       <div class="step" id="s2"></div>
@@ -107,8 +115,8 @@
     <!-- SECTION 1: WELCOME -->
     <section class="section active" id="welcome">
       <div class="card">
-        <h2 style="margin:6px 0 2px;">స్వాగతం</h2>
-        <p class="note">బీజేపీ కాకినాడ అధికారిక పేజీకి స్వాగతం. క్రింద నాయకుల చిత్రాలు చూడండి.</p>
+        <h2 data-key="welcomeTitle">స్వాగతం</h2>
+        <p class="note" data-key="welcomeNote">బీజేపీ కాకినాడ అధికారిక పేజీకి స్వాగతం. క్రింద నాయకుల చిత్రాలు చూడండి.</p>
       </div>
       <div class="gallery">
         <div class="card"><img src="Media.jpeg" alt="నేత 1"></div>
@@ -117,109 +125,106 @@
         <div class="card"><img src="leader3.jpg" alt="మీడియా"></div>
       </div>
       <div class="form-card" style="text-align:center">
-        <p class="note">తదుపరి దశకు వెళ్లడానికి “లాగిన్” బటన్ పై నొక్కండి.</p>
+        <p class="note" data-key="welcomeBtnNote">తదుపరి దశకు వెళ్లడానికి “లాగిన్” బటన్ పై నొక్కండి.</p>
         <div class="btns" style="justify-content:center">
-          <button onclick="go(2)">లాగిన్</button>
+          <button onclick="go(2)" data-key="loginBtn">లాగిన్</button>
         </div>
-        <!-- Social Media Icons -->
-  <div style="margin:18px 0;">
-    <a href="https://www.facebook.com/share/1BHqQeN4BV/" target="_blank" title="Facebook">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" 
-           alt="Facebook" style="width:40px; margin:0 10px;">
-    </a>
-    <a href="https://chat.whatsapp.com/IuzE1LuG0cuDNpbh52Cgi1?mode=ems_copy_c" target="_blank" title="WhatsApp">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" 
-           alt="WhatsApp" style="width:40px; margin:0 10px;">
-    </a>
-  </div>
-
-</section>
-
+        <div style="margin:18px 0;">
+          <a href="https://www.facebook.com/share/1BHqQeN4BV/" target="_blank" title="Facebook">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" 
+                 alt="Facebook" style="width:40px; margin:0 10px;">
+          </a>
+          <a href="https://chat.whatsapp.com/IuzE1LuG0cuDNpbh52Cgi1?mode=ems_copy_c" target="_blank" title="WhatsApp">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" 
+                 alt="WhatsApp" style="width:40px; margin:0 10px;">
+          </a>
+        </div>
+      </div>
+    </section>
 
     <!-- SECTION 2: LOGIN -->
     <section class="section" id="login">
       <form class="form-card" onsubmit="return doLogin(event)">
-        <h2>లాగిన్ వివరాలు</h2>
-        <label for="user">వినియోగదారు పేరు</label>
+        <h2 data-key="loginTitle">లాగిన్ వివరాలు</h2>
+        <label for="user" data-key="userLabel">వినియోగదారు పేరు</label>
         <input id="user" name="user" type="text" placeholder="మీ పేరు" required>
-
-        <label for="pass">పాస్‌వర్డ్</label>
+        <label for="pass" data-key="passLabel">పాస్‌వర్డ్</label>
         <input id="pass" name="pass" type="password" placeholder="పాస్‌వర్డ్ నమోదు చేయండి" required>
 
-        <!-- 🔹 Face Recognition -->
+        <!-- Face Recognition -->
         <div style="text-align:center; margin:16px 0;">
           <video id="video" width="280" height="200" autoplay muted style="border:1px solid #ccc; border-radius:10px;"></video>
           <canvas id="canvas" width="280" height="200" style="display:none;"></canvas>
           <input type="hidden" id="faceData" name="faceData">
           <div class="btns" style="justify-content:center; margin-top:10px;">
-            <button type="button" onclick="captureFace()">📷 Capture Face</button>
+            <button type="button" onclick="captureFace()" data-key="captureFaceBtn">📷 Capture Face</button>
           </div>
         </div>
 
         <div class="btns">
-          <button type="button" class="sec" onclick="go(1)">వెనక్కి</button>
-          <button type="submit">లాగిన్ చేసి కొనసాగు</button>
+          <button type="button" class="sec" onclick="go(1)" data-key="backBtn">వెనక్కి</button>
+          <button type="submit" data-key="loginSubmitBtn">లాగిన్ చేసి కొనసాగు</button>
         </div>
-        <p class="note">డెమో కోసం ఏదైనా పేరు & పాస్‌వర్డ్ ఇవ్వండి.</p>
+        <p class="note" data-key="loginDemoNote">డెమో కోసం ఏదైనా పేరు & పాస్‌వర్డ్ ఇవ్వండి.</p>
       </form>
     </section>
 
     <!-- SECTION 3: REGISTRATION FORM -->
     <section class="section" id="reg">
       <form class="form-card" onsubmit="return submitForm(event)">
-        <h2>బీజేపీ సభ్యత్వ నమోదు ఫారం</h2>
+        <h2 data-key="regTitle">బీజేపీ సభ్యత్వ నమోదు ఫారం</h2>
 
-        <label for="name">పేరు</label>
+        <label for="name" data-key="regName">పేరు</label>
         <input type="text" id="name" name="name" placeholder="మీ పేరు" required>
 
-        <label for="father">తండ్రి పేరు</label>
+        <label for="father" data-key="regFather">తండ్రి పేరు</label>
         <input type="text" id="father" name="father" placeholder="తండ్రి పేరు" required>
 
-        <label for="age">వయసు</label>
+        <label for="age" data-key="regAge">వయసు</label>
         <input type="number" id="age" name="age" min="18" max="120" placeholder="వయసు" required>
 
-        <label for="gender">లింగం</label>
+        <label for="gender" data-key="regGender">లింగం</label>
         <select id="gender" name="gender" required>
           <option value="">--ఎంచుకోండి--</option>
-          <option value="male">పురుషుడు</option>
-          <option value="female">స్త్రీ</option>
-          <option value="other">ఇతరులు</option>
+          <option value="male" data-key="male">పురుషుడు</option>
+          <option value="female" data-key="female">స్త్రీ</option>
+          <option value="other" data-key="other">ఇతరులు</option>
         </select>
 
-        <label for="village">గ్రామం</label>
+        <label for="village" data-key="regVillage">గ్రామం</label>
         <input type="text" id="village" name="village" placeholder="గ్రామం" required>
 
-        <label for="mandal">మండలం</label>
+        <label for="mandal" data-key="regMandal">మండలం</label>
         <input type="text" id="mandal" name="mandal" placeholder="మండలం" required>
 
-        <label for="district">జిల్లా</label>
+        <label for="district" data-key="regDistrict">జిల్లా</label>
         <input type="text" id="district" name="district" placeholder="జిల్లా" required>
 
-        <label for="state">రాష్ట్రం</label>
+        <label for="state" data-key="regState">రాష్ట్రం</label>
         <input type="text" id="state" name="state" placeholder="రాష్ట్రం" required>
 
-        <label for="profession">వృత్తి</label>
+        <label for="profession" data-key="regProfession">వృత్తి</label>
         <input type="text" id="profession" name="profession" placeholder="వృత్తి" required>
 
-        <label for="phone">ఫోన్ నంబర్</label>
+        <label for="phone" data-key="regPhone">ఫోన్ నంబర్</label>
         <input type="tel" id="phone" name="phone" placeholder="10 digit mobile" pattern="[0-9]{10}" required>
 
-        <label for="blood">రక్తగ్రూప్</label>
+        <label for="blood" data-key="regBlood">రక్తగ్రూప్</label>
         <select id="blood" name="blood" required>
           <option value="">--ఎంచుకోండి--</option>
-          <option value="A+">A+</option>
-          <option value="A-">A-</option>
-          <option value="B+">B+</option>
-          <option value="B-">B-</option>
-          <option value="O+">O+</option>
-          <option value="O-">O-</option>
-          <option value="AB+">AB+</option>
-          <option value="AB-">AB-</option>
+          <option value="A+" data-key="bloodAplus">A+</option>
+          <option value="A-" data-key="bloodAminus">A-</option>
+          <option value="B+" data-key="bloodBplus">B+</option>
+          <option value="B-" data-key="bloodBminus">B-</option>
+          <option value="O+" data-key="bloodOplus">O+</option>
+          <option value="O-" data-key="bloodOminus">O-</option>
+          <option value="AB+" data-key="bloodABplus">AB+</option>
+          <option value="AB-" data-key="bloodABminus">AB-</option>
         </select>
 
         <div class="btns">
-          <button type="button" class="sec" onclick="go(2)">వెనక్కి</button>
-          <button type="submit">సమర్పించు</button>
+          <button type="button" class="sec" onclick="go(2)" data-key="backBtn">వెనక్కి</button>
+          <button type="submit" data-key="submitBtn">సమర్పించు</button>
         </div>
       </form>
     </section>
@@ -227,10 +232,10 @@
     <!-- THANK YOU SECTION -->
     <section class="section" id="thanks">
       <div class="form-card" style="text-align:center">
-        <h2>ధన్యవాదాలు!</h2>
-        <p class="note">మీ నమోదు విజయవంతంగా స్వీకరించబడింది.</p>
+        <h2 data-key="thanksTitle">ధన్యవాదాలు!</h2>
+        <p class="note" data-key="thanksNote">మీ నమోదు విజయవంతంగా స్వీకరించబడింది.</p>
         <div class="btns" style="justify-content:center">
-          <button onclick="go(1)" class="sec">మళ్లీ హోమ్</button>
+          <button onclick="go(1)" class="sec" data-key="homeBtn">మళ్లీ హోమ్</button>
         </div>
       </div>
     </section>
@@ -286,7 +291,62 @@
       go(4);
       return false;
     }
+
+    // Translation dictionary
+    const translations = {
+      partyTitle: { te: "భారతీయ జనతా పార్టీ (బీజేపీ) – కాకినాడ", hi: "भारतीय जनता पार्टी (BJP) – काकिनाडा", en: "Bharatiya Janata Party (BJP) – Kakinada" },
+      languageLabel: { te: "భాష / भाषा / Language:", hi: "भाषा / भाषा / Language:", en: "Language:" },
+      welcomeTitle: { te: "స్వాగతం", hi: "स्वागत है", en: "Welcome" },
+      welcomeNote: { te: "బీజేపీ కాకినాడ అధికారిక పేజీకి స్వాగతం. క్రింద నాయకుల చిత్రాలు చూడండి.", hi: "भाजपा काकिनाडा के आधिकारिक पेज में आपका स्वागत है। नीचे नेताओं की तस्वीरें देखें।", en: "Welcome to BJP Kakinada official page. See leaders' photos below." },
+      welcomeBtnNote: { te: "తదుపరి దశకు వెళ్లడానికి “లాగిన్” బటన్ పై నొక్కండి.", hi: "अगले चरण के लिए 'लॉगिन' बटन पर क्लिक करें।", en: "Click 'Login' button to proceed to next step." },
+      loginTitle: { te: "లాగిన్ వివరాలు", hi: "लॉगिन विवरण", en: "Login Details" },
+      userLabel: { te: "వినియోగదారు పేరు", hi: "उपयोगकर्ता नाम", en: "Username" },
+      passLabel: { te: "పాస్‌వర్డ్", hi: "पासवर्ड", en: "Password" },
+      loginBtn: { te: "లాగిన్", hi: "लॉगिन", en: "Login" },
+      captureFaceBtn: { te: "📷 Capture Face", hi: "📷 फेस कैप्चर करें", en: "📷 Capture Face" },
+      backBtn: { te: "వెనక్కి", hi: "पीछे", en: "Back" },
+      loginSubmitBtn: { te: "లాగిన్ చేసి కొనసాగు", hi: "लॉगिन और आगे बढ़ें", en: "Login & Continue" },
+      loginDemoNote: { te: "డెమో కోసం ఏదైనా పేరు & పాస్‌వర్డ్ ఇవ్వండి.", hi: "डेमो के लिए कोई भी नाम & पासवर्ड दर्ज करें।", en: "Enter any username & password for demo." },
+      regTitle: { te: "బీజేపీ సభ్యత్వ నమోదు ఫారం", hi: "भाजपा सदस्य पंजीकरण फॉर्म", en: "BJP Membership Registration Form" },
+      regName: { te: "పేరు", hi: "नाम", en: "Name" },
+      regFather: { te: "తండ్రి పేరు", hi: "पिता का नाम", en: "Father's Name" },
+      regAge: { te: "వయసు", hi: "उम्र", en: "Age" },
+      regGender: { te: "లింగం", hi: "लिंग", en: "Gender" },
+      male: { te: "పురుషుడు", hi: "पुरुष", en: "Male" },
+      female: { te: "స్త్రీ", hi: "महिला", en: "Female" },
+      other: { te: "ఇతరులు", hi: "अन्य", en: "Other" },
+      regVillage: { te: "గ్రామం", hi: "गांव", en: "Village" },
+      regMandal: { te: "మండలం", hi: "मंडल", en: "Mandal" },
+      regDistrict: { te: "జిల్లా", hi: "जिला", en: "District" },
+      regState: { te: "రాష్ట్రం", hi: "राज्य", en: "State" },
+      regProfession: { te: "వృత్తి", hi: "व्यवसाय", en: "Profession" },
+      regPhone: { te: "ఫోన్ నంబర్", hi: "फोन नंबर", en: "Phone Number" },
+      regBlood: { te: "రక్తగ్రూప్", hi: "रक्त समूह", en: "Blood Group" },
+      bloodAplus: { te: "A+", hi: "A+", en: "A+" },
+      bloodAminus: { te: "A-", hi: "A-", en: "A-" },
+      bloodBplus: { te: "B+", hi: "B+", en: "B+" },
+      bloodBminus: { te: "B-", hi: "B-", en: "B-" },
+      bloodOplus: { te: "O+", hi: "O+", en: "O+" },
+      bloodOminus: { te: "O-", hi: "O-", en: "O-" },
+      bloodABplus: { te: "AB+", hi: "AB+", en: "AB+" },
+      bloodABminus: { te: "AB-", hi: "AB-", en: "AB-" },
+      submitBtn: { te: "సమర్పించు", hi: "सबमिट करें", en: "Submit" },
+      thanksTitle: { te: "ధన్యవాదాలు!", hi: "धन्यवाद!", en: "Thank You!" },
+      thanksNote: { te: "మీ నమోదు విజయవంతంగా స్వీకరించబడింది.", hi: "आपका पंजीकरण सफलतापूर्वक स्वीकार किया गया।", en: "Your registration has been successfully received." },
+      homeBtn: { te: "మళ్లీ హోమ్", hi: "होम पर वापस जाएँ", en: "Back to Home" }
+    };
+
+    function translatePage(lang){
+      document.querySelectorAll("[data-key]").forEach(el=>{
+        const key = el.getAttribute("data-key");
+        if(translations[key] && translations[key][lang]){
+          el.textContent = translations[key][lang];
+        }
+      });
+    }
   </script>
 </body>
 </html>
 
+      
+   
