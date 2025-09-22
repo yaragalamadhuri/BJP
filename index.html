@@ -282,41 +282,45 @@
       return false;
     }
     function submitForm(e){
-      e.preventDefault();
-      const data = {
-    user: document.getElementById('user')?.value || "",
-    pass: document.getElementById('pass')?.value || "",
-    faceData: document.getElementById('faceData').value,
-    name: document.getElementById('name').value,
-    father: document.getElementById('father').value,
-    age: document.getElementById('age').value,
-    gender: document.getElementById('gender').value,
-    village: document.getElementById('village').value,
-    mandal: document.getElementById('mandal').value,
-    district: document.getElementById('district').value,
-    state: document.getElementById('state').value,
-    profession: document.getElementById('profession').value,
-    phone: document.getElementById('phone').value,
-    blood: document.getElementById('blood').value
+  e.preventDefault();
+
+  // Collect form data
+  const data = {
+    name: document.getElementById("name").value.trim(),
+    father: document.getElementById("father").value.trim(),
+    age: document.getElementById("age").value.trim(),
+    gender: document.getElementById("gender").value,
+    village: document.getElementById("village").value.trim(),
+    mandal: document.getElementById("mandal").value.trim(),
+    district: document.getElementById("district").value.trim(),
+    state: document.getElementById("state").value.trim(),
+    profession: document.getElementById("profession").value.trim(),
+    phone: document.getElementById("phone").value.trim(),
+    blood: document.getElementById("blood").value,
+    faceData: document.getElementById("faceData").value
   };
 
-  fetch("https://script.google.com/macros/s/AKfycbwMgHhbd46C6yNetmy0K4E_pEqyeSBscVjKY4wk59bNrzckWEJMNXD0_Iz9ka2jl208/exec", {
+  fetch("YOUR_GOOGLE_SCRIPT_URL_HERE", {  // <-- Replace with your Web App URL
     method: "POST",
     body: JSON.stringify(data),
     headers: { "Content-Type": "application/json" }
   })
   .then(res => res.json())
-  .then(resp => {
-    console.log(resp);
-    go(4); // Go to Thank You page
+  .then(res => {
+    if(res.status === "success"){
+      go(4);  // Show thank you section
+    } else {
+      alert("Error saving data: " + (res.message || "Unknown error"));
+    }
   })
   .catch(err => alert("Error saving data: " + err));
 
   return false;
+}
 
-    }
   </script>
 </body>
 </html>
+
 
 
